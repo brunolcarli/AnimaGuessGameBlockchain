@@ -10,16 +10,16 @@ const ABI = [
 ];
 
 const bichos: Record<number, string> = {
-  1: "MACACO",
-  2: "BORBOLETA",
-  3: "COBRA",
-  4: "TARTARUGA",
-  5: "COELHO",
-  6: "ELEFANTE",
-  7: "GIRAFA",
-  8: "PORCO",
-  9: "CACHORRO",
-  10: "GATO",
+  1: "MACACO 🐒",
+  2: "BORBOLETA 🦋",
+  3: "COBRA 🐍",
+  4: "TARTARUGA 🐢",
+  5: "COELHO 🐇",
+  6: "ELEFANTE 🐘",
+  7: "GIRAFA 🦒",
+  8: "PORCO 🐖",
+  9: "CACHORRO 🐶",
+  10: "GATO 🐱",
 };
 
 let signer: ethers.JsonRpcSigner | null = null;
