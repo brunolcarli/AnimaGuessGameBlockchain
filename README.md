@@ -2,6 +2,58 @@
 
 Aplicação Web3 simples onde o usuário escolhe um animal (1 a 10), envia uma transação para um smart contract e recebe o resultado do jogo diretamente via eventos da blockchain.
 
+
+## 🌐 Aplicação em produção
+
+A aplicação está disponível no Vercel:
+
+👉 https://anima-guess-game-blockchain.vercel.app/
+
+---
+
+## 🧪 Ambiente
+
+Este projeto está rodando na rede de testes:
+
+- **Ethereum Sepolia**
+
+---
+
+## 📋 Requisitos para uso
+
+Para utilizar a aplicação, você precisa:
+
+- Uma carteira Web3 compatível (ex: OKX Wallet, MetaMask, etc)
+- A carteira deve estar conectada na rede **Sepolia**
+- Ter saldo de ETH de teste (Sepolia ETH)
+
+---
+
+## ⛽ Faucet (ETH de teste)
+
+Caso não tenha saldo, você pode obter ETH de teste em faucets:
+
+- https://sepoliafaucet.com/
+- https://faucet.quicknode.com/ethereum/sepolia
+
+---
+
+## ⚠️ Observações
+
+- Este projeto utiliza **ETH de teste**, sem valor financeiro real
+- As transações são públicas e podem ser visualizadas no explorer
+- O tempo de confirmação pode variar dependendo da rede
+
+---
+
+## 🔍 Explorador de blocos
+
+Você pode acompanhar suas transações em:
+
+👉 https://sepolia.etherscan.io/
+
+
+
 ## 🚀 Funcionalidades
 
 - Conexão com carteira (OKX, MetaMask, etc)
@@ -16,6 +68,11 @@ Aplicação Web3 simples onde o usuário escolhe um animal (1 a 10), envia uma t
   - Prêmio recebido
 
 ---
+
+# Desenvolvimento
+
+Seção dedicada À desenvolvedores a fim de executar a aplicação localmente, modificar o codigo fonte, etc...
+
 
 ## 🛠️ Tecnologias
 
