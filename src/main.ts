@@ -40,21 +40,65 @@ function getInjectedProvider() {
 }
 
 async function connectWallet() {
+  const walletEl = document.querySelector<HTMLDivElement>("#wallet")!;
+
   try {
     const injectedProvider = getInjectedProvider();
     const provider = new ethers.BrowserProvider(injectedProvider);
 
+    walletEl.innerText = "Solicitando conexão com a carteira...";
+
     await provider.send("eth_requestAccounts", []);
+
+    walletEl.innerText = "Verificando rede Sepolia...";
+
+    try {
+      await provider.send("wallet_switchEthereumChain", [
+        { chainId: "0xaa36a7" }, // Sepolia
+      ]);
+    } catch (switchError: any) {
+      if (switchError.code === 4902) {
+        await provider.send("wallet_addEthereumChain", [
+          {
+            chainId: "0xaa36a7",
+            chainName: "Sepolia",
+            nativeCurrency: {
+              name: "Sepolia ETH",
+              symbol: "ETH",
+              decimals: 18,
+            },
+            rpcUrls: ["https://rpc.sepolia.org"],
+            blockExplorerUrls: ["https://sepolia.etherscan.io"],
+          },
+        ]);
+      } else {
+        throw switchError;
+      }
+    }
 
     signer = await provider.getSigner();
 
     const address = await signer.getAddress();
+    const network = await provider.getNetwork();
 
-    const walletEl = document.querySelector<HTMLDivElement>("#wallet")!;
-    walletEl.innerText = `Carteira conectada: ${address}`;
-  } catch (error) {
+    walletEl.innerHTML = `
+      Carteira conectada:<br />
+      ${address}<br />
+      Rede: ${network.name} (${network.chainId})
+    `;
+  } catch (error: any) {
     console.error(error);
-    alert("Erro ao conectar carteira.");
+
+    const message =
+      error?.shortMessage ||
+      error?.reason ||
+      error?.message ||
+      "Erro desconhecido ao conectar carteira.";
+
+    walletEl.innerHTML = `
+      Erro ao conectar carteira:<br />
+      ${message}
+    `;
   }
 }
 
@@ -164,9 +208,19 @@ async function enviarPalpite() {
       Hash:<br />
       ${tx.hash}
     `;
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
-    statusEl.innerText = "Erro ao enviar transação. Veja o console.";
+  
+    const message =
+      error?.shortMessage ||
+      error?.reason ||
+      error?.message ||
+      "Erro desconhecido ao enviar transação.";
+  
+    statusEl.innerHTML = `
+      <strong>Erro ao enviar transação</strong><br /><br />
+      ${message}
+    `;
   }
 }
 
